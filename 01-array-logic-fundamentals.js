@@ -7,7 +7,6 @@
 
 {
   // Həll 1 — sənin yanaşman
-
   const numbers = [1, 2, 3, 2, 1];
 
   const palindromeChecks = [];
@@ -300,7 +299,7 @@
 // ======================================================
 
 {
-  const numbers = [4, 7, 2, 9, 7, 5, 2];
+  const numbers = [1, 2, 2, 1];
 
   let i = 0;
   let duplicate = -1;
@@ -466,14 +465,28 @@
 // ======================================================
 // Task 49 — Ən uzun ardıcıl artan hissənin uzunluğunu tap
 // Məntiq: Linear Scan + Adjacent Comparison + Counter + Max Tracking
-// İstifadə etmə: sort(), map(), filter(), reduce()
 // ======================================================
-//
-// Input:
-// const numbers = [3, 5, 7, 2, 4, 6, 8, 1];
-//
-// Output:
-// 4
+
+{
+  const numbers = [3, 5, 7, 2, 4, 6, 8, 1];
+
+  let currentCount = 1;
+  let maxCount = 1;
+
+  for (let i = 0; i < numbers.length - 1; i++) {
+    if (numbers[i] < numbers[i + 1]) {
+      currentCount++;
+
+      if (currentCount > maxCount) {
+        maxCount = currentCount;
+      }
+    } else {
+      currentCount = 1;
+    }
+  }
+
+  console.log(maxCount); // 4
+}
 
 // ======================================================
 // Task 50 — Array-də cəmi target-a bərabər olan ilk cütü tap
@@ -487,3 +500,28 @@
 //
 // Output:
 // [3, 8]
+
+{
+  const numbers = [3, 8, 4, 7, 2, 9];
+
+  const target = 11;
+
+  const result = [];
+
+  let found = false;
+
+  for (let i = 0; i < numbers.length && !found; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      if (numbers[i] + numbers[j] === target) {
+        result.push(numbers[i]);
+        result.push(numbers[j]);
+
+        found = true;
+
+        break;
+      }
+    }
+  }
+
+  console.log(result); // [3, 8]
+}
