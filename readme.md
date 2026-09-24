@@ -211,22 +211,3 @@ Burada problemin hansı mövzuya aid olduğu əvvəlcədən deyilməyəcək.
 
 ---
 
-# Progress
-
-Current:
-
-**40 / 750**
-
-Current file:
-
-`01-loops-basic-logic.js`
-
-Next:
-
-**Task 41–50**
-
-Sonra:
-
-`02-array-fundamentals.js`
-
-ilə **Task 51-dən** davam.
