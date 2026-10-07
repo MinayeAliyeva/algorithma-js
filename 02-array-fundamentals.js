@@ -347,6 +347,30 @@
 //
 // count = 3
 
+{
+  const numbers = [1, 1, 2, 2, 2, 3, 3, 3, 3, 2];
+  let count = 1;
+  let maxCount = 0;
+  let result = {
+    number: 0,
+    count: count,
+  };
+
+  for (let i = 0; i < numbers.length - 1; i++) {
+    if (numbers[i] === numbers[i + 1]) {
+      count++;
+      if (count > maxCount) {
+        maxCount = count;
+        result.count = maxCount;
+        result.number = numbers[i];
+      }
+    } else {
+      count = 1;
+    }
+  }
+  console.log(result);
+}
+
 // ======================================================
 // Task 57 — Local peak elementləri tap
 // Məntiq: Neighbor Comparison + Result Array
@@ -373,6 +397,15 @@
 // Birinci və sonuncu element peak hesab edilmir.
 // Çünki onların iki qonşusu yoxdur.
 
+{
+  const numbers = [1, 3, 2, 5, 4, 6, 2, 8, 3];
+  let finded = numbers.filter((el, i) => {
+    if (el > numbers[i - 1] && el > numbers[i + 1]) {
+      return el;
+    }
+  });
+  console.log(finded);
+}
 // ======================================================
 // Task 58 — İki array-in kəsişməsini duplicate olmadan tap
 // Məntiq: Nested Loops + Duplicate Prevention + Result Array
@@ -392,7 +425,22 @@
 //
 // 2 hər iki array-də bir neçə dəfə olsa belə,
 // result-a yalnız bir dəfə əlavə olunmalıdır.
+{
+  const numbers1 = [1, 2, 3, 4, 4, 5, 7];
 
+  const numbers2 = [3, 4, 4, 5, 6, 7];
+  const membershipArr = [];
+
+  for (let i = 0; i < numbers1.length; i++) {
+    let el = numbers1[i];
+    for (let j = 0; j < numbers2.length; j++) {
+      if (el === numbers2[j] && !membershipArr.includes(el)) {
+        membershipArr.push(el);
+      }
+    }
+  }
+  console.log(membershipArr);
+}
 // ======================================================
 // Task 59 — Array-də target cəmini verən neçə fərqli index cütü var
 // Məntiq: Nested Loops + Pair Counting
@@ -423,7 +471,20 @@
 // (i, j) və (j, i) ayrı cüt hesab edilmir.
 //
 // Eyni index iki dəfə istifadə edilə bilməz.
+{
+  const numbers = [1, 2, 3, 4, 5, 6];
+  let target = 7;
+  let count = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      if (numbers[i] + numbers[j] === target) {
+        count++;
+      }
+    }
+  }
 
+  console.log(count);
+}
 // ======================================================
 // Task 60 — Array yalnız bir swap ilə ascending sorted ola bilərmi?
 // Məntiq: Array Comparison + Mismatch Tracking
@@ -469,3 +530,37 @@
 // Məqsəd array-i həqiqətən sort etmək deyil.
 // Məqsəd onun maksimum bir swap ilə sorted ola
 // bilib-bilməyəcəyini müəyyən etməkdir.
+{
+  const numbers = [1, 2, 6, 4, 5, 3];
+  let firstFalseIndex = null;
+  let secondFalseIndex = null;
+
+  let copyArr = [...numbers];
+  for (let i = 0; i < numbers.length; i++) {
+    if (copyArr[i] > copyArr[i + 1]) {
+      if (firstFalseIndex === null) {
+        firstFalseIndex = i;
+      } else {
+        secondFalseIndex = i + 1;
+      }
+    }
+
+    console.log("first", firstFalseIndex);
+    console.log("sec", secondFalseIndex);
+  }
+  if (firstFalseIndex !== null && secondFalseIndex !== null) {
+    let temp = copyArr[firstFalseIndex];
+    copyArr[firstFalseIndex] = copyArr[secondFalseIndex];
+    copyArr[secondFalseIndex] = temp;
+  }
+  let isSorted = true;
+  for (let i = 0; i < copyArr.length - 1; i++) {
+    if (copyArr[i] > copyArr[i + 1]) {
+      isSorted = false;
+      break;
+    }
+  }
+
+  console.log(isSorted);
+  console.log(copyArr);
+}
