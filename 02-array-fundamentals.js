@@ -1,6 +1,6 @@
 // ======================================================
 // 02 — ARRAY FUNDAMENTALS
-// TASK 51–55
+//51-90
 // ======================================================
 
 // ======================================================
@@ -564,3 +564,276 @@
   console.log(isSorted);
   console.log(copyArr);
 }
+
+// ======================================================
+
+// Task 61 — Array-i yerindəcə tərsinə çevir
+
+// Məntiq: Two Indexes + Element Swapping
+
+//
+
+// Həll et:
+
+// → Loop konstruksiyalarından biri ilə
+
+//
+
+// reverse() istifadə etmə.
+
+// Yeni array yaratmadan mövcud array üzərində işləməyə çalış.
+
+// İlk element sonuncu,
+// ikinci element sondan ikinci,
+// və s. olmalıdır.
+
+// ======================================================
+
+// Input:
+
+// Output:
+
+// [5, 4, 3, 2, 1]
+{
+  const numbers = [1, 2, 3, 4, 5];
+  for (let i = 0; i < Math.floor(numbers.length / 2); i++) {
+    let rightindex = numbers.length - 1 - i;
+    let temp = numbers[i];
+    numbers[rightindex] = temp;
+  }
+  console.log(numbers);
+}
+
+// ======================================================
+// ======================================================
+
+// Task 62 — Target elementlərinin hamısını sil
+
+// Məntiq: Element Selection + Array Reconstruction
+
+//
+
+// Həll et:
+
+// → Loop konstruksiyalarından biri ilə
+
+//
+
+// filter() istifadə etmə.
+
+// Verilmiş target-ə bərabər olan bütün elementləri
+// array-dən çıxart.
+
+// Digər elementlərin ardıcıllığı dəyişməməlidir.
+
+// ======================================================
+
+// Input:
+
+// Output:
+
+// [1, 2, 4, 5]
+{
+  const numbers = [1, 3, 2, 3, 4, 3, 5];
+  const target = 3;
+
+  for (let i = numbers.length - 1; i >= 0; i--) {
+    if (numbers[i] === target) {
+      console.log("test");
+      numbers.splice(i, 1);
+    }
+  }
+  console.log(numbers);
+}
+// ======================================================
+
+// Diqqət:
+
+// Target array-də heç yoxdursa,
+// array dəyişməməlidir.
+
+// ======================================================
+// ======================================================
+
+// Task 63 — Soldakı bütün elementlərdən böyük olan elementləri tap
+
+// Məntiq: Running Maximum + Comparison
+
+//
+
+// Həll et:
+
+// → Loop konstruksiyalarından biri ilə
+
+//
+
+// Element özündən əvvəl gələn BÜTÜN elementlərdən
+// böyükdürsə, onu nəticəyə əlavə et.
+
+// İlk element avtomatik olaraq nəzərə alınır,
+// çünki onun solunda heç bir element yoxdur.
+
+// ======================================================
+
+// Input:
+
+{
+  const numbers = [3, 5, 2, 7, 6, 9, 4];
+  let max = numbers[0];
+  let result = [numbers[0]];
+  for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > max) {
+      max = numbers[i];
+      result.push(numbers[i]);
+    }
+  }
+  console.log(result);
+}
+
+// Output:
+
+// [3, 5, 7, 9]
+
+// ======================================================
+
+// İzah:
+
+// 3 → ilk element → götürülür
+// 5 → 3-dən böyük → götürülür
+// 2 → əvvəlkilərin maksimumundan böyük deyil
+// 7 → əvvəlkilərin hamısından böyük → götürülür
+// 6 → 7-dən böyük deyil
+// 9 → əvvəlkilərin hamısından böyük → götürülür
+// 4 → 9-dan böyük deyil
+
+// ======================================================
+
+// ======================================================
+
+// Task 64 — Ən uzun artan ardıcıl hissənin uzunluğunu tap
+
+// Məntiq: Adjacent Comparison + Counter + Max Tracking
+
+//
+
+// Həll et:
+
+// → Loop konstruksiyalarından biri ilə
+
+//
+
+// Burada elementlərin ardıcıllığı vacibdir.
+
+// Yalnız yan-yana gələn elementlər müqayisə olunur.
+
+// Əgər növbəti element əvvəlkindən böyükdürsə,
+// cari ardıcıllıq davam edir.
+
+// Əks halda ardıcıllıq yenidən başlamalıdır.
+
+// ======================================================
+
+// Input:
+
+const numbers = [1, 2, 3, 2, 4, 5, 6, 1, 2];
+let count = 1;
+let maxCount = 0;
+for (let i = 0; i < numbers.length - 1; i++) {
+  if (numbers[i] < numbers[i + 1]) {
+    count++;
+    if (count > maxCount) maxCount = count;
+  } else {
+    count = 1;
+  }
+}
+console.log(maxCount);
+// Output:
+
+// 4
+
+// ======================================================
+
+// İzah:
+
+// [1, 2, 3] → count = 3
+//
+// [2, 4, 5, 6] → count = 4
+//
+// [1, 2] → count = 2
+//
+// Ən uzun hissə:
+//
+// [2, 4, 5, 6]
+//
+// count = 4
+
+// ======================================================
+// ======================================================
+
+// Task 65 — İki sıralanmış array-i birləşdir
+
+// Məntiq: Two Pointers + Ordered Merge
+
+//
+
+// Həll et:
+
+// → Loop konstruksiyalarından biri ilə
+
+//
+
+// sort() istifadə etmə.
+
+// Hər iki array əvvəlcədən ascending sıralanıb.
+
+// Məqsəd iki array-i birləşdirərək
+// yeni ascending array yaratmaqdır.
+
+// ======================================================
+
+// Input:
+
+const numbers1 = [1, 3, 5, 7];
+
+const numbers2 = [2, 4, 6, 8];
+
+let result = [];
+
+let i = 0;
+let j = 0;
+while (i < numbers1.length && j < numbers2.length) {
+  if (numbers1[i] < numbers2[j]) {
+    result.push(numbers1[i]);
+    i++;
+  } else {
+    result.push(numbers2[j]);
+    j++;
+  }
+}
+console.log(result);
+// Output:
+
+// [1, 2, 3, 4, 5, 6, 7, 8]
+
+// Output:
+
+// [1, 2, 3, 4, 5, 6, 7, 8]
+
+// ======================================================
+
+// Diqqət:
+
+// Array-lərin daxilində duplicate ola bilər.
+
+// Duplicate elementləri silmə.
+
+// Məsələn:
+//
+// [1, 3, 3]
+// [2, 3, 4]
+//
+// nəticə:
+//
+// [1, 2, 3, 3, 3, 4]
+
+// ======================================================
